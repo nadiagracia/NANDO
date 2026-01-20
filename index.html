@@ -75,7 +75,7 @@ p{
 
 /* button */
 .next-btn{
-  margin-top:30px;
+  margin-top:18px;
   padding:12px 36px;
   border-radius:30px;
   border:1px solid #aaa;
@@ -83,6 +83,18 @@ p{
   color:#eee;
   letter-spacing:1px;
   text-decoration:none;
+  cursor:pointer;
+}
+
+/* play music button */
+.play-btn{
+  margin-top:20px;
+  padding:10px 26px;
+  border-radius:25px;
+  border:1px solid #fff;
+  background:rgba(255,255,255,0.08);
+  color:#fff;
+  cursor:pointer;
 }
 
 /* gallery */
@@ -132,7 +144,8 @@ p{
 
 <div class="bg"></div>
 
-<audio autoplay loop>
+<!-- audio -->
+<audio id="bgMusic" loop>
   <source src="i will always love you.mp3" type="audio/mpeg">
 </audio>
 
@@ -146,6 +159,10 @@ p{
     Setiap detik menuju hari lahir kamu,  
     aku selalu ngerasa bersyukur punya kamu di hidupku.
   </p>
+  <p>
+    Sebelum Next, Play Musik dulu sayangkuu
+  </p>
+  <button class="play-btn" onclick="playMusic()">▶ Play Music</button>
 
   <a class="next-btn" href="#hbd.love">Next</a>
 </section>
@@ -153,7 +170,7 @@ p{
 <!-- SECTION 2 -->
 <section class="section" id="hbd.love">
   <h2>Happy Birthday Fernando Ius Saroha Manik</h2>
-    <p>
+  <p>
     Di hari spesial ini, aku cuma mau bilang:  
     semoga semua hal baik makin sering datang ke hidup kamu ya seng.  
     Semoga rencana-rencana kamu satu per satu bisa tercapai,  
@@ -174,7 +191,6 @@ p{
     <img src="nando.jpeg">
     <img src="againwnando.jpeg">
     <img src="withnando.jpeg">
-    
   </div>
 
   <p>Setiap foto ini adalah cerita yang ingin terus aku simpan.</p>
@@ -199,8 +215,13 @@ p{
 </section>
 
 <script>
-/* 🎂 Ulang tahun Nando: 21 Januari
-   Kita set ke ultah terdekat: 21 Jan 2026 00:00 */
+// play music after click
+function playMusic(){
+  const music = document.getElementById("bgMusic");
+  music.play();
+}
+
+// 🎂 countdown
 const birthday = new Date("2026-01-21T00:00:00").getTime();
 
 setInterval(()=>{
