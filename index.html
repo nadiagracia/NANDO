@@ -2,17 +2,17 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Happy Birthday Nando 🤍</title>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400&display=swap');
 
 *{box-sizing:border-box}
+html,body{margin:0;padding:0;overflow-x:hidden}
 html{scroll-behavior:smooth}
 
 body{
-  margin:0;
   font-family:Poppins,sans-serif;
   background:#000;
   color:#eee;
@@ -37,17 +37,17 @@ body{
 
 .section{
   min-height:100vh;
-  padding:70px 22px 40px;
+  padding:70px 18px 40px;
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
   text-align:center;
-  animation:fadeUp 1.2s ease;
+  animation:fadeUp 1s ease;
 }
 
 @keyframes fadeUp{
-  from{opacity:0;transform:translateY(30px)}
+  from{opacity:0;transform:translateY(20px)}
   to{opacity:1;transform:translateY(0)}
 }
 
@@ -56,73 +56,73 @@ h1,h2{
   letter-spacing:1px;
 }
 
-h1{font-size:34px}
-h2{font-size:26px}
+h1{font-size:30px}
+h2{font-size:22px}
 
 p{
-  max-width:650px;
-  line-height:1.9;
+  max-width:92%;
+  line-height:1.8;
   color:#ccc;
+  font-size:14px;
 }
 
 /* countdown */
 .countdown{
-  margin:18px 0;
-  font-size:18px;
-  letter-spacing:2px;
+  margin:14px 0;
+  font-size:15px;
+  letter-spacing:1px;
   color:#fff;
 }
 
-/* button */
-.next-btn{
-  margin-top:18px;
-  padding:12px 36px;
+/* buttons */
+.next-btn, .play-btn{
+  margin-top:16px;
+  padding:10px 26px;
   border-radius:30px;
   border:1px solid #aaa;
-  background:transparent;
+  background:rgba(255,255,255,0.05);
   color:#eee;
   letter-spacing:1px;
   text-decoration:none;
   cursor:pointer;
+  font-size:13px;
 }
 
-/* play music button */
-.play-btn{
-  margin-top:20px;
-  padding:10px 26px;
-  border-radius:25px;
-  border:1px solid #fff;
-  background:rgba(255,255,255,0.08);
-  color:#fff;
-  cursor:pointer;
+/* ===== SWIPE GALLERY ===== */
+.gallery-wrapper{
+  width:100%;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
 }
 
-/* gallery */
 .gallery{
   display:flex;
-  gap:18px;
-  overflow-x:auto;
-  padding:10px;
-  margin-top:25px;
+  gap:14px;
+  padding:12px 10px 20px;
+  scroll-snap-type:x mandatory;
 }
 
 .gallery img{
-  width:200px;
-  height:260px;
-  border-radius:22px;
+  flex:0 0 auto;
+  width:160px;
+  height:220px;
+  border-radius:18px;
   object-fit:cover;
   filter:grayscale(100%) brightness(.85);
-  transition:.6s;
+  transition:.5s;
+  scroll-snap-align:center;
 }
 
+.gallery img:active,
 .gallery img:hover{
   filter:none;
   transform:scale(1.05);
 }
 
+/* heart */
 .heart{
-  font-size:58px;
-  margin:18px;
+  font-size:52px;
+  margin:14px;
   animation:pulse 1.3s infinite;
 }
 
@@ -133,8 +133,8 @@ p{
 }
 
 .footer{
-  margin-top:25px;
-  font-size:14px;
+  margin-top:18px;
+  font-size:12px;
   color:#aaa;
 }
 </style>
@@ -159,11 +159,11 @@ p{
     Setiap detik menuju hari lahir kamu,  
     aku selalu ngerasa bersyukur punya kamu di hidupku.
   </p>
-  <p>
-    Sebelum Next, Play Musik dulu sayangkuu
+    <p>
+    Sebelum Next, Play Musik dulu yaa seng🤍
   </p>
-  <button class="play-btn" onclick="playMusic()">▶ Play Music</button>
 
+  <button class="play-btn" onclick="playMusic()">▶ Play Music</button>
   <a class="next-btn" href="#hbd.love">Next</a>
 </section>
 
@@ -185,15 +185,17 @@ p{
 <section class="section" id="gallery">
   <h2>Our Moments</h2>
 
-  <div class="gallery">
-    <img src="bswnando.jpeg">
-    <img src="mirrorwnando.jpeg">
-    <img src="nando.jpeg">
-    <img src="againwnando.jpeg">
-    <img src="withnando.jpeg">
+  <div class="gallery-wrapper">
+    <div class="gallery">
+      <img src="bswnando.jpeg">
+      <img src="mirrorwnando.jpeg">
+      <img src="nando.jpeg">
+      <img src="againwnando.jpeg">
+      <img src="withnando.jpeg">
+    </div>
   </div>
 
-  <p>Setiap foto ini adalah cerita yang ingin terus aku simpan.</p>
+  <p>Geser ke kanan & kiri ya 🤍</p>
   <a class="next-btn" href="#last">Next</a>
 </section>
 
@@ -217,11 +219,10 @@ p{
 <script>
 // play music after click
 function playMusic(){
-  const music = document.getElementById("bgMusic");
-  music.play();
+  document.getElementById("bgMusic").play();
 }
 
-// 🎂 countdown
+// countdown
 const birthday = new Date("2026-01-21T00:00:00").getTime();
 
 setInterval(()=>{
